@@ -1,0 +1,60 @@
+												PROGETTO PR2-UNIVERSITA' DI PISA
+Autore: Sturba Gionatha
+
+INFORMAZIONI UTILI:
+
+  1)Per quanto riguarda i test,nel codice sorgente, risultano commentati,questo perche' sono diversi,quindi ci sono piu Main.
+    Se si volesse provarne uno o piu',basta scegliere e rimuovere porzioni di commenti suddivise dal pattern TEST 1,2,3 ecc.., 
+    riguardanti il test da effettuare.Non effettuare piu' test riguardanti classi diverse contemporaneamente.
+    
+  2)La Documentazione ufficiale di tutti i metodi di una classe,e' stata inserita solo nell'interfaccia relativa alla classe.
+  
+DESCRIZIONE PROGETTO:
+
+	L'obiettivo del progetto era quello di definirsi una classe grafo avente un tipo generico,per poi implementare un suo utilizzo per
+        rappresentare una rete sociale. Ho progettato l'astrazione del grafo attraverso le seguenti classi:
+
+        1)NODO: Rappresenta un vertice del grafo.Nella classe Nodo ho scelto di inserire una Lista di elementi,che mi rappresentassero gli archi 
+                uscenti dal quel nodo,in modo tale da rappresentare il grafo tramite una lista di adiacenza.In questa lista non ci sono duplicati.
+                Infine sono state aggiunte delle variabili d'istanza utili per delle operazioni su grafi(Dijistrka,BFS,ecc.).
+                (PER MAGGIORI INFO,VEDERE AF E IR DELLA CLASSE,SITUATE NEL CODICE SORGENTE).
+
+        2)ARCO: Rappresenta un arco del grafo.Qui si e' scelto di implementare un peso dell'arco che fosse >= 0,quindi e' stata scartata la 
+                possibilita' di implementare grafi con pesi negativi.
+                (PER MAGGIORI INFO,VEDERE AF E IR DELLA CLASSE,SITUATE NEL CODICE SORGENTE).
+
+        3)GRAFO: E' la classe principale,essa rappresenta un Grafo G = (V,E).Ho scelto di implementare questa classe con una HashMap(f:K->V),
+                 per i seguenti motivi:
+
+                 1) Le chiavi dei vertici fanno parte di un insieme di non duplicati,quindi fanno parte dell'insieme K.
+                 2) I Vertici o Nodi anch'essi fanno parte di un insieme,che rappresenta il grafo,percio' sono stati salvati nell'insieme V.
+                 3) Ogni chiave ha associato un Vertice o Nodo,quest'astrazione viene rappresentata dalla funzione HashMap.
+
+                 Altre scelte implementative sono state :
+
+                 --Gestire i grafi pesati e non,implicitamente,ovvero se si vuole inserire un grafo pesato,basta inserire il peso relativi 
+                   agli archi,altrimenti,in caso di grafo non pesato,si e' scelto che ogni arco abbia peso = 1.Questo semplificava il 
+                   problema di ricercare cammini minimi in grafi non pesati.
+                 
+                 --Rendere la classe Grafo final,questo perche' questa classe doveva rappresentare un grafo piu' generale possibile.
+                   Quindi sono state escluse le possibilita' di creare altri classi che estendessero la classe Grafo.Questo avrebbe 
+                   allungato molto di piu' la produzione di codice,anche se avrebbe semplificato l'astrazione della classe Grafo.
+                   
+                  (PER MAGGIORI INFO,VEDERE AF E IR DELLA CLASSE,SITUATE NEL CODICE SORGENTE).
+
+
+        4)GRAFO UTILITIES: E' una classe che contiene metodi statici riguardanti algoritmi operanti su grafi.
+
+        
+        Per quanto riguarda invece l'implementazione della rete sociale,sono state utilizazzate le seguenti classi:
+        
+        1)Utente: Rappresenta un utente iscritto alla rete sociale.Una scelta implementativa e' stata quella di inserire un range di eta',
+                  per iscriversi alla rete sociale.
+
+        2)Social Network: Rappresenta il grafo di una rete sociale,dove i vertici sono gli utenti e le relazioni tra gli utenti sono gli archi.
+                          La scelta implementativa che e' stata fatta su questo grafo e' quella di essere non orientato,questo perche' se 2 utenti 
+                          sono amici vuol dire che ci sara un arco in entrambi i versi nei 2 vertici,cio vuol dire che gli archi non sono orientati.
+                          Un'altra scelta e' stata quella di non inserire pesi sugli archi,perche' il contesto non lo richiedeva,cio' voleva dire 
+                          per come era stata implementata la classe grafo che ogni arco o amicizia aveva peso 1.
+
+        Per concludere sono state create anche delle classi eccezioni,tutte unchecked per errori relativi alla classe Grafo.
